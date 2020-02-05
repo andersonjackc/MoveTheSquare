@@ -27,7 +27,21 @@ public class GameController {
 	}
 
 	public void moveSquare(Game model, Square square) {
-		square.setX(square.getX() + model.getSquareDx());
-		square.setY(square.getY() + model.getSquareDy());
+		if(square.getX()+model.getSquareDx()<0) {
+			square.setX(0);
+		}else if(square.getX()+square.getWidth() + model.getSquareDx() > 640.0) {
+			square.setX(640-square.getWidth());
+		}else {
+			square.setX(square.getX() + model.getSquareDx());
+		}
+		
+		if(square.getY()+model.getSquareDy()<0) {
+			square.setY(0);
+		}else if(square.getY()+square.getHeight() + model.getSquareDy() > 480.0) {
+			square.setY(480-square.getHeight());
+		}else {
+			square.setY(square.getY() + model.getSquareDy());
+		}
+		
 	}
 }
